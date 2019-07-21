@@ -2,16 +2,29 @@
 layout: page
 ---
 
-{% for lang in site.dictionary.languages %}
-{% if page.entry[lang] %}
-<section id="{{ lang }}">
-	<h3>{{ site.data.i18n[lang][page.ui_language] }}</h3>
+<section id="word {{ site.dictionary.target_language }}">
+	<label>{{ site.data.i18n['entry_word'][page.ui_language] }}</label>
+	<p>{{ page.entry[site.dictionary.target_language] }}</p>
+	<span class="pos">{{ site.data.i18n[page.entry['pos']][page.ui_language] }}</span>
+</section>
+
+<section id="examples">
+	<label>{{ site.data.i18n['examples'][page.ui_language] }}</label>
 	<ul>
-		{% for e in page.entry[lang] %}
-		<li>{{ e }}</li>
-		{% endfor %}
+	{% for ex in page.entry['examples'] %}
+		<li>
+		<label>{{ site.data.i18n['context'][page.ui_language] }}</label>
+		<p class="context">{{ ex['context'][page.ui_language] }}</p>
+
+		<label>{{ site.data.i18n['example'][page.ui_language] }}</label>
+		<p class="text">{{ ex['text'][page.ui_language] }}</p>
+
+		<label>{{ site.data.i18n['translation'][page.ui_language] }}</label>
+		<p class="translation">{{ ex['text'][site.dictionary.target_language] }}</p>
+
+		<label>{{ site.data.i18n['explanation'][page.ui_language] }}</label>
+		<p class="explanation">{{ ex['explanation'][page.ui_language] }}</p>
+		</li>
+	{% endfor %}
 	</ul>
 </section>
-{% endif %}
-{% endfor %}
-

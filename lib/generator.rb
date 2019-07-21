@@ -10,11 +10,11 @@ module Jekyll
       @site = site
       @base = base
       @dir  = @site.config['dictionary']['prefix']+'/'+ui_language+'/entries'
-      @name = Utils.slugify(entry[target_language].join(', '))+'.html'
+      @name = Utils.slugify(entry[target_language]+' '+entry['pos'])+'.html'
       self.process(@name)
       # Read the YAML data from the layout page.
 	  self.read_yaml(__dir__, "dictionary_entry.html")
-      self.data['title']       = entry[target_language].join(', ')
+      self.data['title']       = entry[target_language]
 	  self.data['description'] = self.data['title']
 	  self.data['entry']       = entry
 	  self.data['ui_language'] = ui_language
