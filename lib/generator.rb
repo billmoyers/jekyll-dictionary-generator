@@ -6,10 +6,10 @@ module Jekyll
 
   class DictionaryEntry < Page
 
-    def initialize(site, base, entry, target_language)
+    def initialize(site, base, entry, target_language, ui_language)
       @site = site
       @base = base
-      @dir  = @site.config['dictionary']['prefix']+'/entries'
+      @dir  = @site.config['dictionary']['prefix']+'/'+ui_language+'/entries'
       @name = Utils.slugify(entry[target_language].join(', '))+'.html'
       self.process(@name)
       # Read the YAML data from the layout page.
@@ -17,6 +17,7 @@ module Jekyll
       self.data['title']       = entry[target_language].join(', ')
 	  self.data['description'] = self.data['title']
 	  self.data['entry']       = entry
+	  self.data['ui_language'] = ui_language
     end
 
     def read_yaml(base, name, opts = {})
@@ -40,10 +41,12 @@ module Jekyll
   class Site
 
     def write_dictionary_entry(entry, target_language)
-      page = DictionaryEntry.new(self, self.source, entry, target_language)
-      page.render(self.layouts, site_payload)
-      page.write(self.dest)
-      self.pages << page 
+	  self.config['dictionary']['languages'].each do |ui_language|
+		page = DictionaryEntry.new(self, self.source, entry, target_language, ui_language)
+		page.render(self.layouts, site_payload)
+		page.write(self.dest)
+		self.pages << page 
+	  end
     end
 
     def write_dictionary_entries

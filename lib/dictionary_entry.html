@@ -5,7 +5,7 @@ layout: page
 {% for lang in site.dictionary.languages %}
 {% if page.entry[lang] %}
 <section id="{{ lang }}">
-	<h3>{{ lang }}</h3>
+	<h3>{{ site.data.i18n[lang][page.ui_language] }}</h3>
 	<ul>
 		{% for e in page.entry[lang] %}
 		<li>{{ e }}</li>
