@@ -42,10 +42,12 @@ module Jekyll
 
     def write_dictionary_entry(entry, target_language)
 	  self.config['dictionary']['languages'].each do |ui_language|
-		page = DictionaryEntry.new(self, self.source, entry, target_language, ui_language)
-		page.render(self.layouts, site_payload)
-		page.write(self.dest)
-		self.pages << page 
+	    if ui_language != target_language then
+		  page = DictionaryEntry.new(self, self.source, entry, target_language, ui_language)
+		  page.render(self.layouts, site_payload)
+		  page.write(self.dest)
+  		  self.pages << page 
+		end
 	  end
     end
 

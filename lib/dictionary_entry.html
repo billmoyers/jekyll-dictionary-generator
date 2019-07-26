@@ -16,11 +16,11 @@ layout: page
 		<label>{{ site.data.i18n['context'][page.ui_language] }}</label>
 		<p class="context">{{ ex['context'][page.ui_language] }}</p>
 
-		<label>{{ site.data.i18n['example'][page.ui_language] }}</label>
-		<p class="text">{{ ex['text'][page.ui_language] }}</p>
-
 		<label>{{ site.data.i18n['translation'][page.ui_language] }}</label>
 		<p class="translation">{{ ex['text'][site.dictionary.target_language] }}</p>
+
+		<label>{{ site.data.i18n['example'][page.ui_language] }}</label>
+		<p class="text">{{ ex['text'][page.ui_language] }}</p>
 
 		<label>{{ site.data.i18n['explanation'][page.ui_language] }}</label>
 		<p class="explanation">{{ ex['explanation'][page.ui_language] }}</p>
