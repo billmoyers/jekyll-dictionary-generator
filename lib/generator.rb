@@ -18,6 +18,7 @@ module Jekyll
 	  self.data['description'] = self.data['title']
 	  self.data['entry']       = entry
 	  self.data['ui_language'] = ui_language
+	  self.data['search_content'] = entry[target_language] + "\n" + entry['examples'].map { |e| e['text'][target_language] }.join("\n")
     end
 
     def read_yaml(base, name, opts = {})
