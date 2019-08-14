@@ -4,7 +4,7 @@ layout: page
 
 <section id="word" class="dictionary {{ site.dictionary.target_language }}">
 	<label>{{ site.data.i18n['entry_word'][page.ui_language] }}</label>
-	<p><a>&nbsp;</a>{{ page.entry[site.dictionary.target_language] }}</p>
+	<p><a class="bar">&nbsp;</a>{{ page.entry[site.dictionary.target_language] }}</p>
 	<span class="pos">{{ site.data.i18n[page.entry['pos']][page.ui_language] }}</span>
 </section>
 
@@ -13,7 +13,7 @@ layout: page
 	<ul>
 	{% for ex in page.entry['examples'] %}
 		<li>
-		<label class="index">{{ forloop.index }}</label>
+		<label class="index"><a href="#{{ forloop.index }}">{{ forloop.index }}</a></label>
 
 		<section class="example">
 			<label class="context">{{ site.data.i18n['context'][page.ui_language] }}</label>
